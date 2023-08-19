@@ -11,17 +11,40 @@ func main() {
 	// note that the type is enforced so I can only pass in a string
 	printMe(printValue)
 
-	numerator := 11
-	denominator := 2
+	numerator := 15
+	denominator := 3
 
 	// in a function that returns mutliple values I can inline assign multiple values similtaniously
 	result, remainder, err := intDivision(numerator, denominator)
-	if err != nil {
+
+	//if err != nil {
+	//	fmt.Printf(err.Error())
+	//} else if remainder == 0 {
+	//	fmt.Printf("The result of the integer division is %v\n", result)
+	//} else {
+	//	fmt.Printf("The result of the integer division is %v with the remainder of %v\n", result, remainder)
+	//}
+
+	// switches are more clean
+	// in go breaks are implied by default so no need to specify them
+	switch {
+	case err != nil:
 		fmt.Printf(err.Error())
-	} else if remainder == 0 {
-		fmt.Printf("The result of the integer division is %v", result)
-	} else {
-		fmt.Printf("The result of the integer division is %v with the remainder of %v", result, remainder)
+	case remainder == 0:
+		fmt.Printf("The result of the integer division is %v\n", result)
+	default:
+		fmt.Printf("The result of the integer division is %v with the remainder of %v\n", result, remainder)
+	}
+
+	// condititonal switch
+	// cases are based on value of variable.
+	switch remainder {
+	case 0:
+		fmt.Printf("The Division was exact\n")
+	case 1, 2:
+		fmt.Printf("The Division was close\n")
+	default:
+		fmt.Printf("The Division was not close\n")
 	}
 }
 
@@ -38,7 +61,7 @@ func printMe(printValue string) {
 func intDivision(numerator int, denomonator int) (int, int, error) {
 	var err error
 	if denomonator == 0 {
-		err = errors.New("Cannot Divide by Zero")
+		err = errors.New("Cannot Divide by Zero\n")
 		return 0, 0, err
 	}
 	var result int = numerator / denomonator
