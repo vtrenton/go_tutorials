@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 	// pass value into printMe function
@@ -12,8 +15,14 @@ func main() {
 	denominator := 2
 
 	// in a function that returns mutliple values I can inline assign multiple values similtaniously
-	result, remainder := intDivision(numerator, denominator)
-	fmt.Printf("The result of the integer division is %v with the remainder of %v", result, remainder)
+	result, remainder, err := intDivision(numerator, denominator)
+	if err != nil {
+		fmt.Printf(err.Error())
+	} else if remainder == 0 {
+		fmt.Printf("The result of the integer division is %v", result)
+	} else {
+		fmt.Printf("The result of the integer division is %v with the remainder of %v", result, remainder)
+	}
 }
 
 // printValue is of type string
@@ -26,9 +35,15 @@ func printMe(printValue string) {
 // We can specify multiple types if there are multiple returns
 // we can do this by putting the return types into parenthesis
 // func <funcname>(<param1> <type1>, <param2> <type2>) (<return_type1>, <return_type2>))
-func intDivision(numerator int, denomonator int) (int, int) {
+func intDivision(numerator int, denomonator int) (int, int, error) {
+	var err error
+	if denomonator == 0 {
+		err = errors.New("Cannot Divide by Zero")
+		return 0, 0, err
+	}
 	var result int = numerator / denomonator
 	var remainder int = numerator % denomonator
 	// return multiple values with the comma
-	return result, remainder
+	// if there is no error - error will return nil back to the caller
+	return result, remainder, err
 }
