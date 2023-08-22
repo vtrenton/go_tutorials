@@ -1,2 +1,5 @@
-going through a go tutorial on youtube:
+Going through a go tutorial on youtube:
 https://www.youtube.com/watch?v=5og8btQcdlw
+
+I know there will be at least one person who remarks on all of the comments...
+Submitting a PR saying 'optimizing code' and removing all the comments is not a flex...
