@@ -39,6 +39,8 @@ type engine interface {
 	milesLeft() uint8
 }
 
+// functions
+
 // right now this function is only availible to gasEngine
 //in order to make it more general I can use an Interface (above)
 //func canMakeIt(e gasEngine, miles uint8) {
@@ -50,7 +52,6 @@ func canMakeIt(e engine, miles uint8) {
 	}
 }
 
-// functions
 func main() {
 	// we can set the values in the struct using struct litteral syntax
 	//var myEngine gasEngine = gasEngine{mpg: 25, gallons: 15}
