@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sync"
 	"time"
 )
@@ -40,8 +41,8 @@ func main() {
 
 func dbCall(i int) {
 	// similate db call delay
-	//var delay float32 = rand.Float32() * 2000
-	var delay float32 = 2000
+	var delay float32 = rand.Float32() * 2000
+	//var delay float32 = 2000
 	// it's very important where you put the mutex lock and unlock statements
 	// if we put the lock statement here for example this would completly ruin any paralellization benifits
 	// This is because the compute (data procession portion) would be locked by one thread.
