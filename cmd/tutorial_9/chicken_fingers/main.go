@@ -43,6 +43,8 @@ func checkTofuPrices(website string, tofuChannel chan string) {
 }
 
 func sendMessage(chickenChannel chan string, tofuChannel chan string) {
+	// select is like an if statement for channels
+	// the first channel to be assigned a value will take the website variable - then print a value and exit
 	select {
 	case website := <-chickenChannel:
 		fmt.Printf("Found a deal on chicken at %s\n", website)
