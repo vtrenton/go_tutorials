@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 )
 
 func main() {
@@ -91,7 +91,7 @@ type purchaseInfo struct {
 // return the Generic type T
 func loadJSON[T contactInfo | purchaseInfo](filepath string) []T {
 	// read the file into the data variable
-	var data, _ = ioutil.ReadFile(filepath)
+	var data, _ = os.ReadFile(filepath)
 	// intialize an empty struct object
 	var loaded = []T{}
 	//unmarshal the json string into the address of the "loaded" slice
